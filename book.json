@@ -42,7 +42,7 @@
     "slot": "XXXXXXXXXX",
     "format": "auto",
     "element": ".page-inner section",
-    "position": "top"
+    "position": "bottom"
   }
 
     
