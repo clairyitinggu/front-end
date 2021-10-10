@@ -1,0 +1,633 @@
+
+<!DOCTYPE HTML>
+<html lang="" >
+    <head>
+        <meta charset="UTF-8">
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <title>生命周期&render props模式&高阶组件&原理揭秘 · GitBook</title>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="description" content="">
+        <meta name="generator" content="GitBook 3.2.3">
+        
+        
+        
+    
+    <link rel="stylesheet" href="gitbook/style.css">
+
+    
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-intopic-toc/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-block-code/style.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-disqus/plugin.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-search/search.css">
+                
+            
+                
+                <link rel="stylesheet" href="gitbook/gitbook-plugin-fontsettings/website.css">
+                
+            
+        
+
+    
+
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+        
+    
+
+        
+    
+    
+    <meta name="HandheldFriendly" content="true"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="gitbook/images/apple-touch-icon-precomposed-152.png">
+    <link rel="shortcut icon" href="gitbook/images/favicon.ico" type="image/x-icon">
+
+    
+    <link rel="next" href="react基础Day04-React原理揭秘&React路由基础.html" />
+    
+    
+    <link rel="prev" href="react基础Day02-受控组件&评论案例&props&context.html" />
+    
+
+    </head>
+    <body>
+        
+<div class="book">
+    <div class="book-summary">
+        
+            
+<div id="book-search-input" role="search">
+    <input type="text" placeholder="Type to search" />
+</div>
+
+            
+                <nav role="navigation">
+                
+
+
+<ul class="summary">
+    
+    
+
+    
+
+    
+        
+        
+    
+        <li class="chapter " data-level="1.1" data-path="./">
+            
+                <a href="./">
+            
+                    
+                    Introduction
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.2" data-path="react基础Day01-React概述&脚手架搭建&JSX&组件.html">
+            
+                <a href="react基础Day01-React概述&脚手架搭建&JSX&组件.html">
+            
+                    
+                    React概述&脚手架搭建&JSX&组件
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.3" data-path="react基础Day02-受控组件&评论案例&props&context.html">
+            
+                <a href="react基础Day02-受控组件&评论案例&props&context.html">
+            
+                    
+                    受控组件&评论案例&props&context
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter active" data-level="1.4" data-path="react基础Day03-生命周期&render props模式&高阶组件&原理揭秘.html">
+            
+                <a href="react基础Day03-生命周期&render props模式&高阶组件&原理揭秘.html">
+            
+                    
+                    生命周期&render props模式&高阶组件&原理揭秘
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.5" data-path="react基础Day04-React原理揭秘&React路由基础.html">
+            
+                <a href="react基础Day04-React原理揭秘&React路由基础.html">
+            
+                    
+                    React原理揭秘&React路由基础
+            
+                </a>
+            
+
+            
+        </li>
+    
+        <li class="chapter " data-level="1.6" data-path="react好租客项目Day01-项目演示&项目搭建&antd-mobile的TabBar使用.html">
+            
+                <a href="react好租客项目Day01-项目演示&项目搭建&antd-mobile的TabBar使用.html">
+            
+                    
+                    好租客项目演示&项目搭建&antd-mobile的TabBar使用
+            
+                </a>
+            
+
+            
+        </li>
+    
+
+    
+
+    <li class="divider"></li>
+
+    <li>
+        <a href="https://www.gitbook.com" target="blank" class="gitbook-link">
+            Published with GitBook
+        </a>
+    </li>
+</ul>
+
+
+                </nav>
+            
+        
+    </div>
+
+    <div class="book-body">
+        
+            <div class="body-inner">
+                
+                    
+
+<div class="book-header" role="navigation">
+    
+
+    <!-- Title -->
+    <h1>
+        <i class="fa fa-circle-o-notch fa-spin"></i>
+        <a href="." >生命周期&render props模式&高阶组件&原理揭秘</a>
+    </h1>
+</div>
+
+
+
+
+                    <div class="page-wrapper" tabindex="-1" role="main">
+                        <div class="page-inner">
+                            
+<div id="book-search-results">
+    <div class="search-noresults">
+    
+                                <section class="normal markdown-section">
+                                
+                                <h1 id="&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;">&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;</h1>
+<h2 id="&#x76EE;&#x6807;">&#x76EE;&#x6807;</h2>
+<ul>
+<li>&#x8BF4;&#x51FA;&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;&#x5BF9;&#x5E94;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;</li>
+<li>&#x94A9;&#x5B50;&#x51FD;&#x6570;&#x8C03;&#x7528;&#x7684;&#x65F6;&#x673A;</li>
+</ul>
+<h2 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h2>
+<p>&#x610F;&#x4E49;&#xFF1A;&#x7EC4;&#x4EF6;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x6709;&#x52A9;&#x4E8E;&#x7406;&#x89E3;&#x7EC4;&#x4EF6;&#x7684;&#x8FD0;&#x884C;&#x65B9;&#x5F0F;&#xFF0C;&#x5B8C;&#x6210;&#x66F4;&#x590D;&#x6742;&#x7684;&#x7EC4;&#x4EF6;&#x529F;&#x80FD;&#x3001;&#x5206;&#x6790;&#x7EC4;&#x4EF6;&#x9519;&#x8BEF;&#x539F;&#x56E0;&#x7B49;</p>
+<p>&#x7EC4;&#x4EF6;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#xFF1A; &#x7EC4;&#x4EF6;&#x4ECE;&#x88AB;&#x521B;&#x5EFA;&#x5230;&#x6302;&#x8F7D;&#x5230;&#x9875;&#x9762;&#x4E2D;&#x8FD0;&#x884C;&#xFF0C;&#x518D;&#x5230;&#x7EC4;&#x4EF6;&#x4E0D;&#x5728;&#x65F6;&#x5378;&#x8F7D;&#x7684;&#x8FC7;&#x7A0B;</p>
+<p>&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x6BCF;&#x4E2A;&#x9636;&#x6BB5;&#x603B;&#x662F;&#x4F34;&#x968F;&#x7740;&#x4E00;&#x4E9B;&#x65B9;&#x6CD5;&#x8C03;&#x7528;&#xFF0C;&#x8FD9;&#x4E9B;&#x65B9;&#x6CD5;&#x5C31;&#x662F;&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;</p>
+<p>&#x6784;&#x9020;&#x51FD;&#x6570;&#x7684;&#x4F5C;&#x7528;&#xFF1A;&#x4E3A;&#x5F00;&#x53D1;&#x4EBA;&#x5458;&#x5728;&#x4E0D;&#x540C;&#x9636;&#x6BB5;&#x64CD;&#x4F5C;&#x7EC4;&#x4EF6;&#x63D0;&#x4F9B;&#x4E86;&#x5B9E;&#x9645;</p>
+<h2 id="&#x751F;&#x547D;&#x5468;&#x671F;&#x9636;&#x6BB5;">&#x751F;&#x547D;&#x5468;&#x671F;&#x9636;&#x6BB5;</h2>
+<p><img src="images/&#x751F;&#x547D;&#x5468;&#x671F;.png" alt=""></p>
+<h3 id="&#x521B;&#x5EFA;&#x65F6;&#xFF08;&#x6302;&#x8F7D;&#x9636;&#x6BB5;&#xFF09;">&#x521B;&#x5EFA;&#x65F6;&#xFF08;&#x6302;&#x8F7D;&#x9636;&#x6BB5;&#xFF09;</h3>
+<ul>
+<li>&#x6267;&#x884C;&#x65F6;&#x673A;&#xFF1A;&#x7EC4;&#x4EF6;&#x521B;&#x5EFA;&#x65F6;&#xFF08;&#x9875;&#x9762;&#x52A0;&#x8F7D;&#x65F6;&#xFF09;</li>
+<li>&#x6267;&#x884C;&#x987A;&#x5E8F;</li>
+</ul>
+<p><img src="images/&#x521B;&#x5EFA;&#x65F6;-&#x51FD;&#x6570;&#x6267;&#x884C;&#x987A;&#x5E8F;.png" alt=""></p>
+<p><img src="images/&#x521B;&#x5EFA;&#x65F6;-&#x51FD;&#x6570;&#x7684;&#x4F5C;&#x7528;.png" alt=""></p>
+<h3 id="&#x66F4;&#x65B0;&#x65F6;">&#x66F4;&#x65B0;&#x65F6;</h3>
+<p>&#x6267;&#x884C;&#x65F6;&#x673A;&#xFF1A;<code>setState()&#x3001; forceUpdate()&#x3001; &#x7EC4;&#x4EF6;&#x63A5;&#x6536;&#x5230;&#x65B0;&#x7684;props</code></p>
+<p>&#x8BF4;&#x660E;&#xFF1A;&#x4EE5;&#x4E0A;&#x4E09;&#x8005;&#x4EFB;&#x610F;&#x4E00;&#x79CD;&#x53D8;&#x5316;&#xFF0C;&#x7EC4;&#x4EF6;&#x5C31;&#x4F1A;&#x91CD;&#x65B0;&#x6E32;&#x67D3;</p>
+<p>&#x6267;&#x884C;&#x987A;&#x5E8F;&#xFF1A;</p>
+<p><img src="images/&#x66F4;&#x65B0;&#x65F6;.png" alt=""></p>
+<p><img src="images/&#x66F4;&#x65B0;&#x65F6;-&#x51FD;&#x6570;&#x4F5C;&#x7528;.png" alt=""></p>
+<h3 id="&#x5378;&#x8F7D;&#x65F6;">&#x5378;&#x8F7D;&#x65F6;</h3>
+<p>&#x6267;&#x884C;&#x65F6;&#x673A;&#xFF1A;&#x7EC4;&#x4EF6;&#x4ECE;&#x9875;&#x9762;&#x4E2D;&#x6D88;&#x5931;</p>
+<p>&#x4F5C;&#x7528;&#xFF1A;&#x7528;&#x6765;&#x505A;&#x6E05;&#x7406;&#x64CD;&#x4F5C;</p>
+<p><img src="images/&#x5378;&#x8F7D;&#x65F6;.png" alt=""></p>
+<h3 id="&#x4E0D;&#x5E38;&#x7528;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;">&#x4E0D;&#x5E38;&#x7528;&#x7684;&#x94A9;&#x5B50;&#x51FD;&#x6570;</h3>
+<h4 id="&#x65E7;&#x7248;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x94A9;&#x5B50;&#x51FD;&#x6570;">&#x65E7;&#x7248;&#x7684;&#x751F;&#x547D;&#x5468;&#x671F;&#x94A9;&#x5B50;&#x51FD;&#x6570;</h4>
+<p><img src="images/&#x65E7;&#x7248;&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;.png" alt=""></p>
+<h4 id="&#x65B0;&#x7248;&#x5B8C;&#x6574;&#x751F;&#x547D;&#x4F1A;&#x8D70;&#x68CB;&#x94A9;&#x5B50;&#x51FD;&#x6570;">&#x65B0;&#x7248;&#x5B8C;&#x6574;&#x751F;&#x547D;&#x4F1A;&#x8D70;&#x68CB;&#x94A9;&#x5B50;&#x51FD;&#x6570;</h4>
+<p><img src="images/&#x65B0;&#x7248;&#x751F;&#x547D;&#x5468;&#x671F;&#x51FD;&#x6570;.png" alt=""></p>
+<h5 id="getderivedstatefromprops"><code>getDerivedStateFromProps()</code></h5>
+<ul>
+<li><strong><code>getDerivedStateFromProps</code></strong> &#x4F1A;&#x5728;&#x8C03;&#x7528; render &#x65B9;&#x6CD5;&#x4E4B;&#x524D;&#x8C03;&#x7528;&#xFF0C;&#x5E76;&#x4E14;&#x5728;&#x521D;&#x59CB;&#x6302;&#x8F7D;&#x53CA;&#x540E;&#x7EED;&#x66F4;&#x65B0;&#x65F6;&#x90FD;&#x4F1A;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x5B83;&#x5E94;&#x8FD4;&#x56DE;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#x6765;&#x66F4;&#x65B0; state&#xFF0C;&#x5982;&#x679C;&#x8FD4;&#x56DE; null &#x5219;&#x4E0D;&#x66F4;&#x65B0;&#x4EFB;&#x4F55;&#x5185;&#x5BB9;</li>
+<li>&#x4E0D;&#x7BA1;&#x539F;&#x56E0;&#x662F;&#x4EC0;&#x4E48;&#xFF0C;&#x90FD;&#x4F1A;&#x5728;<em>&#x6BCF;&#x6B21;</em>&#x6E32;&#x67D3;&#x524D;&#x89E6;&#x53D1;&#x6B64;&#x65B9;&#x6CD5;</li>
+</ul>
+<h5 id="shouldcomponentupdate"><code>shouldComponentUpdate()</code></h5>
+<ul>
+<li>&#x6839;&#x636E; <strong><code>shouldComponentUpdate()</code></strong> &#x7684;&#x8FD4;&#x56DE;&#x503C;&#xFF0C;&#x5224;&#x65AD; React &#x7EC4;&#x4EF6;&#x7684;&#x8F93;&#x51FA;&#x662F;&#x5426;&#x53D7;&#x5F53;&#x524D; state &#x6216; props &#x66F4;&#x6539;&#x7684;&#x5F71;&#x54CD;&#x3002;&#x9ED8;&#x8BA4;&#x884C;&#x4E3A;&#x662F; state &#x6BCF;&#x6B21;&#x53D1;&#x751F;&#x53D8;&#x5316;&#x7EC4;&#x4EF6;&#x90FD;&#x4F1A;&#x91CD;&#x65B0;&#x6E32;&#x67D3;</li>
+<li>&#x5F53; props &#x6216; state &#x53D1;&#x751F;&#x53D8;&#x5316;&#x65F6;&#xFF0C;<strong><code>shouldComponentUpdate()</code></strong> &#x4F1A;&#x5728;&#x6E32;&#x67D3;&#x6267;&#x884C;&#x4E4B;&#x524D;&#x88AB;&#x8C03;&#x7528;&#x3002;&#x8FD4;&#x56DE;&#x503C;&#x9ED8;&#x8BA4;&#x4E3A; true</li>
+</ul>
+<h5 id="getsnapshotbeforeupdate"><code>getSnapshotBeforeUpdate()</code></h5>
+<ul>
+<li><strong><code>getSnapshotBeforeUpdate()</code></strong> &#x5728;&#x6700;&#x8FD1;&#x4E00;&#x6B21;&#x6E32;&#x67D3;&#x8F93;&#x51FA;&#xFF08;&#x63D0;&#x4EA4;&#x5230; DOM &#x8282;&#x70B9;&#xFF09;&#x4E4B;&#x524D;&#x8C03;&#x7528;&#x3002;&#x5B83;&#x4F7F;&#x5F97;&#x7EC4;&#x4EF6;&#x80FD;&#x5728;&#x53D1;&#x751F;&#x66F4;&#x6539;&#x4E4B;&#x524D;&#x4ECE; DOM &#x4E2D;&#x6355;&#x83B7;&#x4E00;&#x4E9B;&#x4FE1;&#x606F;&#xFF08;&#x4F8B;&#x5982;&#xFF0C;&#x6EDA;&#x52A8;&#x4F4D;&#x7F6E;&#xFF09;&#x3002;&#x6B64;&#x751F;&#x547D;&#x5468;&#x671F;&#x7684;&#x4EFB;&#x4F55;&#x8FD4;&#x56DE;&#x503C;&#x5C06;&#x4F5C;&#x4E3A;&#x53C2;&#x6570;&#x4F20;&#x9012;&#x7ED9; <strong><code>componentDidUpdate()</code></strong></li>
+<li>&#x6B64;&#x7528;&#x6CD5;&#x5E76;&#x4E0D;&#x5E38;&#x89C1;&#xFF0C;&#x4F46;&#x5B83;&#x53EF;&#x80FD;&#x51FA;&#x73B0;&#x5728; UI &#x5904;&#x7406;&#x4E2D;&#xFF0C;&#x5982;&#x9700;&#x8981;&#x4EE5;&#x7279;&#x6B8A;&#x65B9;&#x5F0F;&#x5904;&#x7406;&#x6EDA;&#x52A8;&#x4F4D;&#x7F6E;&#x7684;&#x804A;&#x5929;&#x7EBF;&#x7A0B;&#x7B49;</li>
+</ul>
+<h1 id="render-props&#x6A21;&#x5F0F;-&#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;">render-props&#x6A21;&#x5F0F; &#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;</h1>
+<h2 id="&#x76EE;&#x6807;">&#x76EE;&#x6807;</h2>
+<ul>
+<li>&#x77E5;&#x9053;render-props&#x6A21;&#x5F0F;&#x6709;&#x4EC0;&#x4E48;&#x4F5C;&#x7528;</li>
+<li>&#x80FD;&#x591F;&#x8BF4;&#x51FA;render-props&#x7684;&#x4F7F;&#x7528;&#x6B65;&#x9AA4;</li>
+</ul>
+<h2 id="react&#x7EC4;&#x4EF6;&#x590D;&#x7528;&#x6982;&#x8FF0;">React&#x7EC4;&#x4EF6;&#x590D;&#x7528;&#x6982;&#x8FF0;</h2>
+<ul>
+<li>&#x601D;&#x8003;&#xFF1A;&#x5982;&#x679C;&#x4E24;&#x4E2A;&#x7EC4;&#x4EF6;&#x4E2D;&#x7684;&#x90E8;&#x5206;&#x529F;&#x80FD;&#x76F8;&#x4F3C;&#x6216;&#x76F8;&#x540C;&#xFF0C;&#x8BE5;&#x5982;&#x4F55;&#x5904;&#x7406;&#xFF1F;</li>
+<li>&#x5904;&#x7406;&#x65B9;&#x5F0F;&#xFF1A;&#x590D;&#x7528;&#x76F8;&#x4F3C;&#x7684;&#x529F;&#x80FD;</li>
+<li>&#x590D;&#x7528;&#x4EC0;&#x4E48;&#xFF1F;<ul>
+<li>state</li>
+<li>&#x64CD;&#x4F5C;state&#x7684;&#x65B9;&#x6CD5;</li>
+</ul>
+</li>
+<li>&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#xFF1A;<ul>
+<li>render props&#x6A21;&#x5F0F;</li>
+<li>&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#xFF08;HOC&#xFF09;</li>
+</ul>
+</li>
+<li>&#x6CE8;&#x610F;&#xFF1A; &#x8FD9;&#x4E24;&#x79CD;&#x65B9;&#x5F0F;&#x4E0D;&#x662F;&#x65B0;&#x7684;API&#xFF0C;&#x800C;&#x662F;&#x5229;&#x7528;React&#x81EA;&#x8EAB;&#x7279;&#x70B9;&#x7684;&#x7F16;&#x7801;&#x6280;&#x5DE7;&#xFF0C;&#x6F14;&#x5316;&#x800C;&#x6210;&#x7684;&#x56FA;&#x5B9A;&#x6A21;&#x5F0F;</li>
+</ul>
+<h2 id="&#x601D;&#x8DEF;&#x5206;&#x6790;">&#x601D;&#x8DEF;&#x5206;&#x6790;</h2>
+<ul>
+<li><p>&#x601D;&#x8DEF;&#xFF1A;&#x5C06;&#x8981;&#x590D;&#x7528;&#x7684;state&#x548C;&#x64CD;&#x4F5C;state&#x7684;&#x65B9;&#x6CD5;&#x5C01;&#x88C5;&#x5230;&#x4E00;&#x4E2A;&#x7EC4;&#x4EF6;&#x4E2D;</p>
+</li>
+<li><p>&#x5982;&#x4F55;&#x62FF;&#x5230;&#x8BE5;&#x7EC4;&#x4EF6;&#x4E2D;&#x590D;&#x7528;&#x7684;state</p>
+<ul>
+<li><p>&#x5728;&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x65F6;&#xFF0C;&#x6DFB;&#x52A0;&#x4E00;&#x4E2A;&#x503C;&#x4E3A;&#x51FD;&#x6570;&#x7684;prop&#xFF0C;&#x901A;&#x8FC7;&#x51FD;&#x6570;&#x53C2;&#x6570;&#x6765;&#x83B7;&#x53D6;</p>
+<p><img src="images/render-props-01.png" alt=""></p>
+</li>
+</ul>
+</li>
+<li><p>&#x5982;&#x4F55;&#x6E32;&#x67D3;&#x5230;&#x4EFB;&#x610F;&#x7684;UI</p>
+<ul>
+<li><p>&#x4F7F;&#x7528;&#x8BE5;&#x51FD;&#x6570;&#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4F5C;&#x4E3A;&#x8981;&#x6E32;&#x67D3;&#x7684;UI&#x5185;&#x5BB9;</p>
+<p><img src="images/render-props-02.png" alt=""></p>
+</li>
+</ul>
+</li>
+</ul>
+<h2 id="&#x4F7F;&#x7528;&#x6B65;&#x9AA4;">&#x4F7F;&#x7528;&#x6B65;&#x9AA4;</h2>
+<ul>
+<li>&#x521B;&#x5EFA;Mouse&#x7EC4;&#x4EF6;&#xFF0C;&#x5728;&#x7EC4;&#x4EF6;&#x4E2D;&#x63D0;&#x4F9B;&#x590D;&#x7528;&#x7684;&#x903B;&#x8F91;&#x4EE3;&#x7801;</li>
+<li>&#x5C06;&#x8981;&#x590D;&#x7528;&#x7684;&#x72B6;&#x6001;&#x4F5C;&#x4E3A; props.render(state)&#x65B9;&#x6CD5;&#x7684;&#x53C2;&#x6570;&#xFF0C;&#x66B4;&#x9732;&#x5230;&#x7EC4;&#x4EF6;&#x5916;&#x90E8;</li>
+<li>&#x4F7F;&#x7528;props.render() &#x7684;&#x8FD4;&#x56DE;&#x503C;&#x4F5C;&#x4E3A;&#x8981;&#x6E32;&#x67D3;&#x7684;&#x5185;&#x5BB9;</li>
+</ul>
+<p><img src="images/render-props&#x6A21;&#x5F0F;-01.png" alt=""></p>
+<h4 id="&#x793A;&#x4F8B;demo">&#x793A;&#x4F8B;demo</h4>
+<pre><code class="lang-react">class Mouse extends React.Component {
+    // &#x9F20;&#x6807;&#x4F4D;&#x7F6E;&#x72B6;&#x6001;
+    state = {
+        x: 0,
+        y: 0
+    }
+
+    // &#x76D1;&#x542C;&#x9F20;&#x6807;&#x79FB;&#x52A8;&#x4E8B;&#x4EF6;
+    componentDidMount(){
+        window.addEventListener(&apos;mousemove&apos;,this.handleMouseMove)
+    }
+    handleMouseMove = e =&gt; {
+        this.setState({
+            x: e.clientX,
+            y: e.clientY
+        })
+    }
+    render(){
+        // &#x5411;&#x5916;&#x754C;&#x63D0;&#x4F9B;&#x5F53;&#x524D;&#x5B50;&#x7EC4;&#x4EF6;&#x91CC;&#x9762;&#x7684;&#x6570;&#x636E;
+        return this.props.render(this.state)
+    }
+}
+class App extends React.Component {
+    render() {
+        return (
+            &lt;div&gt;
+                App
+                &lt;Mouse render={mouse =&gt; {
+                    return &lt;p&gt;X{mouse.x}Y{mouse.y}&lt;/p&gt;
+                }}/&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+ReactDOM.render(&lt;App /&gt;,document.getElementById(&apos;root&apos;))
+</code></pre>
+<h2 id="children&#x4EE3;&#x66FF;render&#x5C5E;&#x6027;">children&#x4EE3;&#x66FF;render&#x5C5E;&#x6027;</h2>
+<ul>
+<li>&#x6CE8;&#x610F;&#xFF1A;&#x5E76;&#x4E0D;&#x662F;&#x8BE5;&#x6A21;&#x5F0F;&#x53EB; render props&#x5C31;&#x5FC5;&#x987B;&#x4F7F;&#x7528;&#x540D;&#x4E3A;render&#x7684;prop&#xFF0C;&#x5B9E;&#x9645;&#x4E0A;&#x53EF;&#x4EE5;&#x4F7F;&#x7528;&#x4EFB;&#x610F;&#x540D;&#x79F0;&#x7684;prop</li>
+<li>&#x628A;prop&#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#x5E76;&#x4E14;&#x544A;&#x8BC9;&#x7EC4;&#x4EF6;&#x8981;&#x6E32;&#x67D3;&#x4EC0;&#x4E48;&#x5185;&#x5BB9;&#x7684;&#x6280;&#x672F;&#x53EB;&#x505A;&#xFF1A; render props&#x6A21;&#x5F0F;</li>
+<li>&#x63A8;&#x8350;&#xFF1A;&#x4F7F;&#x7528;childre&#x4EE3;&#x66FF;render&#x5C5E;&#x6027;</li>
+</ul>
+<p><img src="images/render-props-children&#x6A21;&#x5F0F;.png" alt=""></p>
+<h2 id="&#x4F18;&#x5316;&#x4EE3;&#x7801;">&#x4F18;&#x5316;&#x4EE3;&#x7801;</h2>
+<ul>
+<li>&#x63A8;&#x8350;&#x7ED9;render props&#x6A21;&#x5F0F;&#x6DFB;&#x52A0;props&#x6821;&#x9A8C;</li>
+</ul>
+<p><img src="images/&#x4F18;&#x5316;-&#x6DFB;&#x52A0;&#x6821;&#x9A8C;.png" alt=""></p>
+<ul>
+<li></li>
+</ul>
+<p><img src="images/&#x4F18;&#x5316;-&#x79FB;&#x9664;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;.png" alt=""></p>
+<h1 id="&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;-&#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;">&#x9AD8;&#x9636;&#x7EC4;&#x4EF6; &#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;</h1>
+<h2 id="&#x76EE;&#x6807;">&#x76EE;&#x6807;</h2>
+<ul>
+<li>&#x77E5;&#x9053;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x7684;&#x4F5C;&#x7528;</li>
+<li>&#x80FD;&#x591F;&#x8BF4;&#x51FA;&#x9AD8;&#x9636;&#x7684;&#x4F7F;&#x7528;&#x6B65;&#x9AA4;</li>
+</ul>
+<h2 id="&#x6982;&#x8FF0;">&#x6982;&#x8FF0;</h2>
+<ul>
+<li>&#x76EE;&#x7684;&#xFF1A;&#x5B9E;&#x73B0;&#x72B6;&#x6001;&#x903B;&#x8F91;&#x590D;&#x7528;</li>
+<li>&#x91C7;&#x7528; &#x5305;&#x88C5;&#x6A21;&#x5F0F;</li>
+<li>&#x624B;&#x673A;&#xFF1A;&#x83B7;&#x53D6;&#x4FDD;&#x62A4;&#x529F;&#x80FD;</li>
+<li>&#x624B;&#x673A;&#x58F3;&#xFF1A;&#x63D0;&#x4F9B;&#x4FDD;&#x62A4;&#x529F;&#x80FD;</li>
+<li>&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x5C31;&#x76F8;&#x5F53;&#x4E8E;&#x624B;&#x673A;&#x58F3;&#xFF0C;&#x901A;&#x8FC7;&#x5305;&#x88C5;&#x7EC4;&#x4EF6;&#xFF0C;&#x589E;&#x5F3A;&#x7EC4;&#x4EF6;&#x529F;&#x80FD;</li>
+</ul>
+<p><img src="images/&#x624B;&#x673A;&#x58F3;.png" alt=""></p>
+<h2 id="&#x601D;&#x8DEF;&#x5206;&#x6790;">&#x601D;&#x8DEF;&#x5206;&#x6790;</h2>
+<ul>
+<li>&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;(HOC&#x3001;Higher-Order Component) &#x662F;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x63A5;&#x6536;&#x8981;&#x5305;&#x88C5;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x8FD4;&#x56DE;&#x589E;&#x5F3A;&#x540E;&#x7684;&#x7EC4;&#x4EF6;</li>
+</ul>
+<p><img src="images/&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;-&#x51FD;&#x6570;.png" alt=""></p>
+<ul>
+<li>&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x5185;&#x90E8;&#x521B;&#x5EFA;&#x4E86;&#x4E00;&#x4E2A;&#x7C7B;&#x7EC4;&#x4EF6;&#xFF0C;&#x5728;&#x8FD9;&#x4E2A;&#x7C7B;&#x7EC4;&#x4EF6;&#x4E2D;&#x63D0;&#x4F9B;&#x590D;&#x7528;&#x7684;&#x72B6;&#x6001;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#xFF0C;&#x901A;&#x8FC7;prop&#x5C06;&#x590D;&#x7528;&#x7684;&#x72B6;&#x6001;&#x4F20;&#x9012;&#x7ED9;&#x88AB;&#x5305;&#x88C5;&#x7EC4;&#x4EF6;<code>WrappedComponent</code></li>
+</ul>
+<p><img src="images/&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;-&#x7C7B;&#x7EC4;&#x4EF6;&#x5185;&#x90E8;&#x5B9E;&#x73B0;.png" alt=""></p>
+<h2 id="&#x4F7F;&#x7528;&#x6B65;&#x9AA4;">&#x4F7F;&#x7528;&#x6B65;&#x9AA4;</h2>
+<ul>
+<li>&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x540D;&#x79F0;&#x7EA6;&#x5B9A;&#x4EE5;with&#x5F00;&#x5934;</li>
+<li>&#x6307;&#x5B9A;&#x51FD;&#x6570;&#x53C2;&#x6570;&#xFF0C;&#x53C2;&#x6570;&#x5E94;&#x8BE5;&#x4EE5;&#x5927;&#x5199;&#x5B57;&#x6BCD;&#x5F00;&#x5934;</li>
+<li>&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x7C7B;&#x7EC4;&#x4EF6;&#xFF0C;&#x63D0;&#x4F9B;&#x590D;&#x7528;&#x7684;&#x72B6;&#x6001;&#x903B;&#x8F91;&#x4EE3;&#x7801;&#xFF0C;&#x5E76;&#x8FD4;&#x56DE;</li>
+<li>&#x5728;&#x8BE5;&#x7EC4;&#x4EF6;&#x4E2D;&#xFF0C;&#x6E32;&#x67D3;&#x53C2;&#x6570;&#x7EC4;&#x4EF6;&#xFF0C;&#x540C;&#x65F6;&#x5C06;&#x72B6;&#x6001;&#x901A;&#x8FC7;prop&#x4F20;&#x9012;&#x7ED9;&#x53C2;&#x6570;&#x7EC4;&#x4EF6;</li>
+<li>&#x8C03;&#x7528;&#x8BE5;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#xFF0C;&#x4F20;&#x5165;&#x8981;&#x589E;&#x5F3A;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x901A;&#x8FC7;&#x8FD4;&#x56DE;&#x503C;&#x62FF;&#x5230;&#x589E;&#x5F3A;&#x540E;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x5E76;&#x5C06;&#x5176;&#x6E32;&#x67D3;&#x5230;&#x9875;&#x9762;</li>
+</ul>
+<p><strong>&#x5305;&#x88C5;&#x51FD;&#x6570;</strong></p>
+<pre><code class="lang-react">// &#x5B9A;&#x4E49;&#x4E00;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x5728;&#x51FD;&#x6570;&#x5185;&#x90E8;&#x521B;&#x5EFA;&#x4E00;&#x4E2A;&#x76F8;&#x5E94;&#x7C7B;&#x7EC4;&#x4EF6;
+function withMouse(WrappedComponent) {
+    // &#x8BE5;&#x7EC4;&#x4EF6;&#x63D0;&#x4F9B;&#x590D;&#x7528;&#x72B6;&#x6001;&#x903B;&#x8F91;
+    class Mouse extends React.Component {
+        state = {
+            x: 0,
+            y: 0
+        }
+        // &#x4E8B;&#x4EF6;&#x7684;&#x5904;&#x7406;&#x51FD;&#x6570;
+        handleMouseMove = (e) =&gt; {
+            this.setState({
+                x: e.clientX,
+                y: e.clientY
+            })
+        }
+        // &#x5F53;&#x7EC4;&#x4EF6;&#x6302;&#x8F7D;&#x7684;&#x65F6;&#x5019;&#x8FDB;&#x884C;&#x4E8B;&#x4EF6;&#x7ED1;&#x5B9A;
+        componentDidMount() {
+            window.addEventListener(&apos;mousemove&apos;, this.handleMouseMove)
+        }
+        // &#x5F53;&#x7EC4;&#x4EF6;&#x79FB;&#x9664;&#x65F6;&#x5019;&#x89E3;&#x7ED1;&#x4E8B;&#x4EF6;
+        componentWillUnmount() {
+            window.removeEventListener(&apos;mousemove&apos;, this.handleMouseMove)
+        }
+        render() {
+            // &#x5728;render&#x51FD;&#x6570;&#x91CC;&#x9762;&#x8FD4;&#x56DE;&#x4F20;&#x9012;&#x8FC7;&#x6765;&#x7684;&#x7EC4;&#x4EF6;&#xFF0C;&#x628A;&#x5F53;&#x524D;&#x7EC4;&#x4EF6;&#x7684;&#x72B6;&#x6001;&#x8BBE;&#x7F6E;&#x8FDB;&#x53BB;
+            return &lt;WrappedComponent {...this.state} /&gt;
+        }
+    }
+    return Mouse
+}
+</code></pre>
+<p><strong>&#x54EA;&#x4E2A;&#x7EC4;&#x4EF6;&#x9700;&#x8981;&#x52A0;&#x5F3A;&#xFF0C;&#x901A;&#x8FC7;&#x8C03;&#x7528;<code>withMouse</code>&#x8FD9;&#x4E2A;&#x51FD;&#x6570;&#xFF0C;&#x7136;&#x540E;&#x628A;&#x8FD4;&#x56DE;&#x7684;&#x503C;&#x8BBE;&#x7F6E;&#x5230;&#x7236;&#x7EC4;&#x4EF6;&#x4E2D;&#x5373;&#x53EF;</strong></p>
+<pre><code class="lang-react">function Position(props) {
+    return (
+        &lt;p&gt;
+            X:{props.x}
+            Y:{props.y}
+        &lt;/p&gt;
+    )
+}
+// &#x628A;position &#x7EC4;&#x4EF6;&#x6765;&#x8FDB;&#x884C;&#x5305;&#x88C5;
+let MousePosition = withMouse(Position)
+
+class App extends React.Component {
+    constructor(props) {
+        super(props)
+    }
+    render() {
+        return (
+            &lt;div&gt;
+                &#x9AD8;&#x9636;&#x7EC4;&#x4EF6;
+                &lt;MousePosition&gt;&lt;/MousePosition&gt;
+            &lt;/div&gt;
+        )
+    }
+}
+</code></pre>
+<h2 id="&#x8BBE;&#x7F6E;displayname">&#x8BBE;&#x7F6E;<code>displayName</code></h2>
+<ul>
+<li>&#x4F7F;&#x7528;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x5B58;&#x5728;&#x7684;&#x95EE;&#x9898;&#xFF1A;&#x5F97;&#x5230;&#x4E24;&#x4E2A;&#x7EC4;&#x4EF6;&#x7684;&#x540D;&#x79F0;&#x76F8;&#x540C;</li>
+<li>&#x539F;&#x56E0;&#xFF1A;&#x9ED8;&#x8BA4;&#x60C5;&#x51B5;&#x4E0B;&#xFF0C;React&#x4F7F;&#x7528;&#x7EC4;&#x4EF6;&#x540D;&#x79F0;&#x4F5C;&#x4E3A;<code>displayName</code></li>
+<li>&#x89E3;&#x51B3;&#x65B9;&#x5F0F;&#xFF1A;&#x4E3A;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x8BBE;&#x7F6E;<code>displayName</code>&#xFF0C;&#x4FBF;&#x4E8E;&#x8C03;&#x8BD5;&#x65F6;&#x533A;&#x5206;&#x4E0D;&#x540C;&#x7684;&#x7EC4;&#x4EF6;</li>
+<li><code>displayName&#x7684;&#x4F5C;&#x7528;&#xFF1A;&#x7528;&#x4E8E;&#x8BBE;&#x7F6E;&#x8C03;&#x8BD5;&#x4FE1;&#x606F;(React Developer Tools&#x4FE1;&#x606F;)</code></li>
+<li>&#x8BBE;&#x7F6E;&#x65B9;&#x5F0F;&#xFF1A;</li>
+</ul>
+<p><img src="images/&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;-displayName.png" alt=""></p>
+<h2 id="&#x4F20;&#x9012;props">&#x4F20;&#x9012;props</h2>
+<ul>
+<li>&#x95EE;&#x9898;&#xFF1A;&#x5982;&#x679C;&#x6CA1;&#x6709;&#x4F20;&#x9012;props&#xFF0C;&#x4F1A;&#x5BFC;&#x81F4;props&#x4E22;&#x5931;&#x95EE;&#x9898;</li>
+<li>&#x89E3;&#x51B3;&#x65B9;&#x5F0F;&#xFF1A; &#x6E32;&#x67D3;<code>WrappedComponent</code>&#x65F6;&#xFF0C;&#x5C06;state&#x548C;props&#x4E00;&#x8D77;&#x4F20;&#x9012;&#x7ED9;&#x7EC4;&#x4EF6;</li>
+</ul>
+<p><img src="images/&#x4F20;&#x9012;props.png" alt=""></p>
+<h2 id="&#x5C0F;&#x7ED3;">&#x5C0F;&#x7ED3;</h2>
+<ul>
+<li>&#x7EC4;&#x4EF6;&#x901A;&#x8BAF;&#x662F;&#x6784;&#x5EFA;React&#x5E94;&#x7528;&#x5FC5;&#x4E0D;&#x53EF;&#x5C11;&#x7684;&#x4E00;&#x73AF;</li>
+<li>props&#x7684;&#x7075;&#x6D3B;&#x6027;&#x8BA9;&#x7EC4;&#x4EF6;&#x66F4;&#x52A0;&#x5F3A;&#x5927;</li>
+<li>&#x72B6;&#x6001;&#x63D0;&#x5347;&#x662F;React&#x7EC4;&#x4EF6;&#x7684;&#x5E38;&#x7528;&#x6A21;&#x5F0F;</li>
+<li>&#x7EC4;&#x4EF6;&#x751F;&#x547D;&#x5468;&#x671F;&#x6709;&#x52A9;&#x4E8E;&#x7406;&#x89E3;&#x7EC4;&#x4EF6;&#x7684;&#x8FD0;&#x884C;&#x8FC7;&#x7A0B;</li>
+<li>&#x94A9;&#x5B50;&#x51FD;&#x6570;&#x8BA9;&#x5F00;&#x53D1;&#x8005;&#x53EF;&#x4EE5;&#x5728;&#x7279;&#x5B9A;&#x7684;&#x65F6;&#x673A;&#x6267;&#x884C;&#x67D0;&#x4E9B;&#x529F;&#x80FD;</li>
+<li><code>render props</code> &#x6A21;&#x5F0F;&#x548C;&#x9AD8;&#x9636;&#x7EC4;&#x4EF6;&#x90FD;&#x53EF;&#x4EE5;&#x5B9E;&#x73B0;&#x7EC4;&#x4EF6;&#x72B6;&#x6001;&#x903B;&#x8F91;&#x7684;&#x590D;&#x7528;</li>
+<li>&#x7EC4;&#x4EF6;&#x6781;&#x7B80;&#x6A21;&#x578B;&#xFF1A; <code>(state,props) =&gt; UI</code></li>
+</ul>
+<h1 id="react&#x539F;&#x7406;">React&#x539F;&#x7406;</h1>
+<h2 id="&#x76EE;&#x6807;">&#x76EE;&#x6807;</h2>
+<ul>
+<li>&#x80FD;&#x591F;&#x77E5;&#x9053;<code>setState()</code>&#x66F4;&#x65B0;&#x6570;&#x636E;&#x662F;&#x5F02;&#x6B65;&#x7684;</li>
+<li>&#x80FD;&#x591F;&#x77E5;&#x9053;JSX&#x8BED;&#x6CD5;&#x7684;&#x8F6C;&#x5316;&#x8FC7;&#x7A0B;</li>
+</ul>
+<h2 id="setstate&#x8BF4;&#x660E;-&#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;"><code>setState()</code>&#x8BF4;&#x660E; &#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;</h2>
+<h3 id="&#x66F4;&#x65B0;&#x6570;&#x636E;">&#x66F4;&#x65B0;&#x6570;&#x636E;</h3>
+<ul>
+<li><code>setState()</code>&#x66F4;&#x65B0;&#x6570;&#x636E;&#x662F;&#x5F02;&#x6B65;&#x7684;</li>
+<li>&#x6CE8;&#x610F;&#xFF1A;&#x4F7F;&#x7528;&#x8BE5;&#x8BED;&#x6CD5;&#xFF0C;&#x540E;&#x9762;&#x7684;<code>setState</code>&#x4E0D;&#x8981;&#x4F9D;&#x8D56;&#x524D;&#x9762;<code>setState</code>&#x7684;&#x503C;</li>
+<li>&#x591A;&#x6B21;&#x8C03;&#x7528;<code>setState</code>&#xFF0C;&#x53EA;&#x4F1A;&#x89E6;&#x53D1;&#x4E00;&#x6B21;render</li>
+</ul>
+<h3 id="&#x63A8;&#x8350;&#x8BED;&#x6CD5;">&#x63A8;&#x8350;&#x8BED;&#x6CD5;</h3>
+<ul>
+<li>&#x63A8;&#x8350;&#xFF1A;&#x4F7F;&#x7528; <code>setState((state,props) =&gt; {})</code> &#x8BED;&#x6CD5;</li>
+<li>&#x53C2;&#x6570;state&#xFF1A; &#x8868;&#x793A;&#x6700;&#x65B0;&#x7684;state</li>
+<li>&#x53C2;&#x6570;props&#xFF1A; &#x8868;&#x793A;&#x6700;&#x65B0;&#x7684;props</li>
+</ul>
+<p><img src="images/&#x63A8;&#x8350;&#x8BED;&#x6CD5;.png" alt=""></p>
+<h3 id="&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;">&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;</h3>
+<ul>
+<li>&#x573A;&#x666F;&#xFF1A;&#x5728;&#x72B6;&#x6001;&#x66F4;&#x65B0;(&#x9875;&#x9762;&#x5B8C;&#x6210;&#x91CD;&#x65B0;&#x6E32;&#x67D3;)&#x540E;&#x7ACB;&#x5373;&#x6267;&#x884C;&#x67D0;&#x4E2A;&#x64CD;&#x4F5C;</li>
+<li>&#x8BED;&#x6CD5;&#xFF1A;<code>setState(update[,callback])</code></li>
+</ul>
+<p><img src="images/&#x7B2C;&#x4E8C;&#x4E2A;&#x53C2;&#x6570;.png" alt=""></p>
+<h2 id="jsx&#x8BED;&#x6CD5;&#x7684;&#x8F6C;&#x5316;&#x8FC7;&#x7A0B;-&#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;">JSX&#x8BED;&#x6CD5;&#x7684;&#x8F6C;&#x5316;&#x8FC7;&#x7A0B; &#xFF08;&#x2605;&#x2605;&#x2605;&#xFF09;</h2>
+<ul>
+<li>JSX&#x4EC5;&#x4EC5;&#x662F;<code>createElement()</code> &#x65B9;&#x6CD5;&#x7684;&#x8BED;&#x6CD5;&#x7CD6;(&#x7B80;&#x5316;&#x8BED;&#x6CD5;)</li>
+<li>JSX&#x8BED;&#x6CD5;&#x88AB; @babel/preset-react &#x63D2;&#x4EF6;&#x7F16;&#x8BD1;&#x4E3A;<code>createElement()</code> &#x65B9;&#x6CD5;</li>
+<li>React &#x5143;&#x7D20;&#xFF1A; &#x662F;&#x4E00;&#x4E2A;&#x5BF9;&#x8C61;&#xFF0C;&#x7528;&#x6765;&#x63CF;&#x8FF0;&#x4F60;&#x5E0C;&#x671B;&#x5728;&#x5C4F;&#x5E55;&#x4E0A;&#x770B;&#x5230;&#x7684;&#x5185;&#x5BB9;</li>
+</ul>
+<p><img src="images/&#x8BED;&#x6CD5;&#x7CD6;.png" alt=""></p>
+
+                                
+                                </section>
+                            
+    </div>
+    <div class="search-results">
+        <div class="has-results">
+            
+            <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
+            <ul class="search-results-list"></ul>
+            
+        </div>
+        <div class="no-results">
+            
+            <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+            
+        </div>
+    </div>
+</div>
+
+                        </div>
+                    </div>
+                
+            </div>
+
+            
+                
+                <a href="react基础Day02-受控组件&评论案例&props&context.html" class="navigation navigation-prev " aria-label="Previous page: 受控组件&评论案例&props&context">
+                    <i class="fa fa-angle-left"></i>
+                </a>
+                
+                
+                <a href="react基础Day04-React原理揭秘&React路由基础.html" class="navigation navigation-next " aria-label="Next page: React原理揭秘&React路由基础">
+                    <i class="fa fa-angle-right"></i>
+                </a>
+                
+            
+        
+    </div>
+
+    <script>
+        var gitbook = gitbook || [];
+        gitbook.push(function() {
+            gitbook.page.hasChanged({"page":{"title":"生命周期&render props模式&高阶组件&原理揭秘","level":"1.4","depth":1,"next":{"title":"React原理揭秘&React路由基础","level":"1.5","depth":1,"path":"react基础Day04-React原理揭秘&React路由基础.md","ref":"react基础Day04-React原理揭秘&React路由基础.md","articles":[]},"previous":{"title":"受控组件&评论案例&props&context","level":"1.3","depth":1,"path":"react基础Day02-受控组件&评论案例&props&context.md","ref":"react基础Day02-受控组件&评论案例&props&context.md","articles":[]},"dir":"ltr"},"config":{"gitbook":"*","theme":"default","variables":{},"plugins":["intopic-toc","-highlight","block-code","disqus","adsense","livereload"],"pluginsConfig":{"disqus":{"useIdentifier":false,"shortName":"newbcodes"},"intopic-toc":{"isCollapsed":false,"isScrollspyActive":true,"label":"目录","maxDepth":2,"mode":"nested","selector":".markdown-section h1, .markdown-section h2, .markdown-section h3, .markdown-section h4, .markdown-section h5, .markdown-section h6","visible":true},"livereload":{},"search":{},"adsense":{"client":"ca-pub-4019363362618452","slot":"XXXXXXXXXX","format":"auto","element":".page-inner section","position":"top"},"lunr":{"maxIndexSize":1000000,"ignoreSpecialCharacters":false},"block-code":{"cloneButton":true,"cloneButtonIcon":{"check":"fa-check","clone":"fa-clone"},"cloneButtonStyle":{"bg":"transparent","bg-hover":"transparent","color":"#c1c7cd","color-hover":"#c1c7cd"},"lineNumber":true},"fontsettings":{"theme":"white","family":"sans","size":2},"sharing":{"facebook":true,"twitter":true,"google":false,"weibo":false,"instapaper":false,"vk":false,"all":["facebook","google","twitter","weibo","instapaper"]},"theme-default":{"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"},"showLevel":false}},"structure":{"langs":"LANGS.md","readme":"README.md","glossary":"GLOSSARY.md","summary":"SUMMARY.md"},"pdf":{"pageNumbers":true,"fontSize":12,"fontFamily":"Arial","paperSize":"a4","chapterMark":"pagebreak","pageBreaksBefore":"/","margin":{"right":62,"left":62,"top":56,"bottom":56}},"styles":{"website":"styles/website.css","pdf":"styles/pdf.css","epub":"styles/epub.css","mobi":"styles/mobi.css","ebook":"styles/ebook.css","print":"styles/print.css"}},"file":{"path":"react基础Day03-生命周期&render props模式&高阶组件&原理揭秘.md","mtime":"2021-05-06T09:32:37.394Z","type":"markdown"},"gitbook":{"version":"3.2.3","time":"2021-10-10T08:22:36.772Z"},"basePath":".","book":{"language":""}});
+        });
+    </script>
+</div>
+
+        
+    <script src="gitbook/gitbook.js"></script>
+    <script src="gitbook/theme.js"></script>
+    
+        
+        <script src="gitbook/gitbook-plugin-intopic-toc/anchor.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-intopic-toc/gumshoe.polyfills.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-intopic-toc/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-block-code/script.js"></script>
+        
+    
+        
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/URI.js/1.16.1/URI.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-disqus/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-adsense/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-livereload/plugin.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search-engine.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-search/search.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/lunr.min.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-lunr/search-lunr.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-sharing/buttons.js"></script>
+        
+    
+        
+        <script src="gitbook/gitbook-plugin-fontsettings/fontsettings.js"></script>
+        
+    
+
+    </body>
+</html>
+

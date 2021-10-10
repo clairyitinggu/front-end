@@ -1,0 +1,50 @@
+{
+  "plugins": [
+    
+    "intopic-toc",
+    "-highlight",
+    "block-code",
+    
+    "disqus",
+    "adsense"
+  ],
+  "pluginsConfig": {
+    "intopic-toc": {
+      "mode": "nested",
+      "maxDepth": 2,
+      "isCollapsed": false,
+      "isScrollspyActive": true,
+      "visible": true,
+      "label": "目录"
+    },
+    
+    "block-code": {
+			"cloneButton": true,
+			"lineNumber": true,
+			"cloneButtonStyle": {
+				"color": "#c1c7cd",
+				"color-hover": "#c1c7cd",
+				"bg": "transparent",
+				"bg-hover": "transparent"
+			},
+			"cloneButtonIcon": {
+				"clone": "fa-clone",
+				"check": "fa-check"
+			}
+		},
+
+    "disqus": {
+      "shortName": "newbcodes"
+  },
+
+  "adsense": {
+    "client": "ca-pub-4019363362618452",
+    "slot": "XXXXXXXXXX",
+    "format": "auto",
+    "element": ".page-inner section",
+    "position": "top"
+  }
+
+    
+  }
+}
